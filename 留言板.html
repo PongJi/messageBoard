@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>index</title>
+</head>
+<style>
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 微软雅黑;
+}
+.main{
+	width: 1226px;
+	margin: 0 auto;
+}
+.mess{
+	margin-top:15px;
+}
+textarea{
+	width: 98%;
+	height: 50px;
+	resize: none;
+	border-radius: 20px;
+	padding: 10px;
+	font-weight: bold;
+	font-size:20px;
+}
+textarea:focus{
+	outline: none;
+}
+
+button{
+	width: 100px;
+	height: 50px;
+	background: #ff6700;
+	color: #fff;
+	border-radius: 10px;
+	border: 2px solid #ccc;
+	font-weight: bold;
+}
+button:hover{
+	border-color: red;
+}
+button:focus{
+	outline: none;
+}
+.show{
+	margin-top: 20px;
+	border: 2px solid #272822;
+	border-radius: 10px;
+	height: 100px;
+}
+.close{
+	float: right;
+	margin-right: 10px;
+	font-size: 20px;
+	cursor: pointer;
+}
+</style>
+<script src="jquery-3.2.1.min.js"></script>
+<body>
+	<div class="main">
+	<h1>留言板：</h1>
+		<div class="mess">
+			<textarea ></textarea>
+		</div>
+		<br>
+		<button>留言</button>
+	</div>
+	<!-- <div class="show">
+	测试
+		<div class="close">&times;</div>
+	</div> 
+		
+	</div> -->
+</body>
+<script >
+$('textarea').focus(function(){
+	this.value='';
+});
+$('button').click(function(){
+	val=$('textarea').val();
+	if (val=="") {
+		return false;
+	}
+	else{
+	str="<div class='show'>";
+	str+="<div class='close'>&times;</div>";
+	str+=val;
+	str+="</div>";
+	$(".main").append(str);
+	}
+});
+
+//on 委托事件
+$(document).on('click','.close',function(){
+	$(this).parent().hide(500);
+});
+</script>
+</html>
